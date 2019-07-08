@@ -1,7 +1,6 @@
 package com.base.config;
 
-import com.base.inteceptor.CameHumpInterceptor;
-import com.base.inteceptor.PerformanceInterceptor;
+import com.base.inteceptor.*;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -27,8 +26,12 @@ public class DatabaseConfig {
         CameHumpInterceptor cameHumpInterceptor = new CameHumpInterceptor();
 
         PerformanceInterceptor performanceInterceptor = new PerformanceInterceptor();
+        JdbcTypeInterceptor jdbcTypeInterceptor = new JdbcTypeInterceptor();
 
-        Interceptor[] interceptorArray = new Interceptor[]{cameHumpInterceptor, performanceInterceptor};
+        ResultTypeInterceptor resultTypeInterceptor = new ResultTypeInterceptor();
+        PageInterceptor pageInterceptor = new PageInterceptor();
+        Interceptor[] interceptorArray = new Interceptor[]{cameHumpInterceptor, performanceInterceptor,
+                jdbcTypeInterceptor, resultTypeInterceptor, pageInterceptor};
         bean.setPlugins(interceptorArray);
 
         return bean.getObject();
