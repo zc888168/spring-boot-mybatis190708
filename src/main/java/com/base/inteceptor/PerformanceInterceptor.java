@@ -60,6 +60,7 @@ public class PerformanceInterceptor implements Interceptor {
         if (target instanceof Executor) {
             return Plugin.wrap(target, this);
         }
+
         return target;
     }
 
